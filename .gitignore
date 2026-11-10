@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.env*
+*.tsbuildinfo
+next-env.d.ts
+.claude/settings.local.json
+# Machine-specific dev-server config for the Claude desktop preview.
+.claude/launch.json

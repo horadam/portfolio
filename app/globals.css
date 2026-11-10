@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* Moss and mint: one green family, mint reserved for links, nav and numbers. */
+@theme {
+  --color-page: #0c1611;
+  --color-card: #14241c;
+  --color-card-hover: #192d23;
+  --color-line: #22382d;
+  --color-edge: #2c4a3a;
+  --color-ink: #e2ede6;
+  --color-muted: #86a092;
+  --color-mint: #8fe3b0;
+  --color-mint-soft: #1b3a2b;
+  --color-glow: #173026;
+  --color-contour: #1d3529;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-muted);
+}
+
+::selection {
+  background: var(--color-mint);
+  color: var(--color-page);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-mint);
+  outline-offset: 3px;
+}
+
+/* Entrance: elements fade up in order, set by --i. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+.rise {
+  animation: rise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* Sections further down fade in as they scroll into view, where supported. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+/* Contour lines drift very slowly. */
+@keyframes drift {
+  to {
+    transform: translate3d(-40px, 24px, 0);
+  }
+}
+.drift {
+  animation: drift 40s ease-in-out infinite alternate;
+}
+
+/* The "now" status dot pulses gently. */
+@keyframes pulse-dot {
+  50% {
+    box-shadow: 0 0 0 5px transparent;
+  }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-mint) 50%, transparent);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
