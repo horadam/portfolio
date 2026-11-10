@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   ProjectCard,
   ProjectTile,
@@ -13,6 +14,8 @@ import {
   profile,
   publications,
 } from "@/lib/content";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 // --i sets each element's place in the entrance sequence.
 const order = (i: number) => ({ "--i": i }) as React.CSSProperties;

@@ -3,6 +3,8 @@
 export const profile = {
   name: "Adam Horvath",
   title: "Senior full-stack engineer",
+  // Production domain: base for social preview images and canonical URLs.
+  siteUrl: "https://horadam.dev",
   pitch:
     "Software engineer with a background in psychology. I like building software and AI that work with and for people, not around them.",
   now: "Building Fieldwork. Open to full-stack and AI engineering roles.",

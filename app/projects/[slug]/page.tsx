@@ -22,8 +22,13 @@ function find(slug: string) {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { project } = find((await params).slug);
-  return { title: `${project.name} case study`, description: project.tagline };
+  const { slug } = await params;
+  const { project } = find(slug);
+  return {
+    title: `${project.name} case study`,
+    description: project.tagline,
+    alternates: { canonical: `/projects/${slug}` },
+  };
 }
 
 export default async function CaseStudyPage({ params }: Params) {
