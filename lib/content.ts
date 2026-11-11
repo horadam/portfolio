@@ -64,12 +64,12 @@ export const projects: Project[] = [
   {
     slug: "fieldwork",
     name: "Fieldwork",
-    tagline: "Interview prep that can't invent your experience",
+    tagline: "An LLM coach that builds your prep plan and runs mock interviews",
     year: "2026",
     role: "Solo: product, build and evals",
     featured: true,
     summary:
-      "Import a resume into an experience bank you confirm line by line, check each job description against it requirement by requirement, and turn the gaps into a reviewed preparation plan.",
+      "Import a resume into an experience bank you confirm line by line, check each job description against it requirement by requirement, then an LLM turns the gaps into a preparation plan you review and runs mock interviews that give feedback on your answers.",
     image: {
       src: "/projects/fieldwork.jpg",
       alt: "Fieldwork applications view: a job list with fit coverage and requirement-by-requirement evidence",
@@ -116,6 +116,10 @@ export const projects: Project[] = [
         {
           title: "Preparation plan",
           body: "Questions, answer outlines and a schedule built from the gaps, edited and activated by the user.",
+        },
+        {
+          title: "Interview practice",
+          body: "A chat mock interview with up to two follow-ups per question and coach feedback after each answer or at the end. Voice answers are transcribed for you to correct before sending, and every attempt is kept separately.",
         },
       ],
       architecture:
@@ -190,7 +194,7 @@ export const projects: Project[] = [
       {
         value: "17 / 17",
         label:
-          "answers graded correct by a GPT-5 judge, up from 12 / 17 after one prompt change",
+          "answers judged correct by GPT-5, including out-of-scope and false-premise questions",
       },
       {
         value: "15 / 17",
