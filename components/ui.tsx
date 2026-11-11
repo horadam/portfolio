@@ -36,20 +36,24 @@ export function SectionHeading({
 }
 
 // Site pages use client navigation; other sites and files open in a new tab;
-// mailto: links stay a plain link.
+// mailto: links stay a plain link. A note (a short caveat such as "needs your
+// OpenAI key") sits inside the link, so screen readers hear it with the name.
 export function ArrowLink({
   href,
   children,
   mono = false,
+  note,
 }: {
   href: string;
   children: ReactNode;
   mono?: boolean;
+  note?: string;
 }) {
   const external = href.startsWith("http") || href.endsWith(".pdf");
-  const className = `group inline-flex min-h-6 items-center gap-1 text-ink hover:text-mint focus-visible:text-mint ${
-    mono ? "font-mono text-xs lowercase" : "font-medium"
-  }`;
+  // With a note the link is inline text, so a long note wraps like a sentence.
+  const className = `group text-ink hover:text-mint focus-visible:text-mint ${
+    note ? "inline leading-6" : "inline-flex min-h-6 items-center gap-1"
+  } ${mono ? "font-mono text-xs lowercase" : "font-medium"}`;
   // ↗ leaves the site (new tab); → stays on it.
   const arrow = external ? (
     <>
@@ -69,19 +73,28 @@ export function ArrowLink({
       →
     </span>
   );
+  const noteText = note && (
+    <span className="ml-1.5 font-mono text-xs font-normal text-muted lowercase">
+      <span className="sr-only">, </span>
+      {note}
+    </span>
+  );
   if (href.startsWith("mailto:"))
     return (
       <a href={href} className={className}>
         {children} {arrow}
+        {noteText}
       </a>
     );
   return external ? (
     <a href={href} target="_blank" rel="noreferrer" className={className}>
       {children} {arrow}
+      {noteText}
     </a>
   ) : (
     <Link href={href} className={className}>
       {children} {arrow}
+      {noteText}
     </Link>
   );
 }

@@ -98,7 +98,7 @@ export function ProjectTile({
         </div>
         <div className="relative z-10 mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
           {projectLinks(project).map((l) => (
-            <ArrowLink key={l.href} href={l.href}>
+            <ArrowLink key={l.href} href={l.href} note={l.note}>
               {l.label}
             </ArrowLink>
           ))}
@@ -124,7 +124,7 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
       <div className="relative z-10 mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
         {projectLinks(project).map((l) => (
-          <ArrowLink key={l.href} href={l.href}>
+          <ArrowLink key={l.href} href={l.href} note={l.note}>
             {l.label}
           </ArrowLink>
         ))}

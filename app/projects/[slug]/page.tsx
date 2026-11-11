@@ -98,7 +98,7 @@ export default async function CaseStudyPage({ params }: Params) {
           </div>
           <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
             {project.links.map((l) => (
-              <ArrowLink key={l.href} href={l.href}>
+              <ArrowLink key={l.href} href={l.href} note={l.note}>
                 {l.label}
               </ArrowLink>
             ))}

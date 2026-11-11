@@ -53,7 +53,8 @@ export type Project = {
   image: { src: string; alt: string; width: number; height: number };
   tags: string[];
   // Code, demo and similar. The case-study link is added automatically.
-  links: { label: string; href: string }[];
+  // A note is a short caveat shown beside the link, e.g. what a demo needs.
+  links: { label: string; href: string; note?: string }[];
   proof?: Proof[];
   // When the proof numbers were last taken from the project's own results.
   proofAsOf?: string;
@@ -84,7 +85,14 @@ export const projects: Project[] = [
       "Supabase RLS",
       "Zod",
     ],
-    links: [{ label: "Code", href: "https://github.com/horadam/fieldwork" }],
+    links: [
+      {
+        label: "Live demo",
+        href: "https://fieldwork-delta-virid.vercel.app",
+        note: "sample data, no key needed; AI steps use your OpenAI key",
+      },
+      { label: "Code", href: "https://github.com/horadam/fieldwork" },
+    ],
     // From Fieldwork's evals/results.md.
     proofAsOf: "Nov 2026",
     proof: [
@@ -123,7 +131,7 @@ export const projects: Project[] = [
         },
       ],
       architecture:
-        "Storage and inference are independent: browser storage or a Supabase account with row-level security, and a local Ollama model or OpenAI. Every model call has a deadline, makes one attempt and has no paid fallback.",
+        "Storage and inference are independent: browser storage or a Supabase account with row-level security, and a local Ollama model or OpenAI. Every model call has a deadline, makes one attempt and has no paid fallback. The hosted demo opens with synthetic sample data kept in your browser, and Simulated preview walks through each step without a model. Resume import, fit analysis and plan generation run on your own OpenAI key: it stays in the tab's session storage unless you choose to remember it on that device, goes to the server in a header with each request, and is used for that one call, never stored or logged. Importing a job from its URL needs an account; pasting the listing works without one. For a test account, get in touch using the links at the end of this page.",
       hardProblems: [
         {
           title: "Fetching untrusted job pages safely",
@@ -180,10 +188,15 @@ export const projects: Project[] = [
       "Vercel",
     ],
     links: [
-      { label: "Live evals", href: "https://handbook-rag.vercel.app/evals" },
       {
-        label: "Live demo (your API key)",
+        label: "Live evals",
+        href: "https://handbook-rag.vercel.app/evals",
+        note: "no key needed",
+      },
+      {
+        label: "Live demo",
         href: "https://handbook-rag.vercel.app",
+        note: "needs your OpenAI key",
       },
       { label: "Code", href: "https://github.com/horadam/handbook-rag" },
     ],
@@ -227,7 +240,7 @@ export const projects: Project[] = [
         },
       ],
       architecture:
-        "FastAPI with a vanilla-JS UI, no LangChain or LlamaIndex. One adapter module is the only code that knows the Anthropic and OpenAI APIs, so answers and the judge run on either provider. Visitors bring their own key; it's used for that request only.",
+        "FastAPI with a vanilla-JS UI, no LangChain or LlamaIndex. One adapter module is the only code that knows the Anthropic and OpenAI APIs, so answers and the judge run on either provider. The evals page works without a key. The live chat needs your own OpenAI key, because search embeds each question with OpenAI; an Anthropic key is optional and only used for answers.",
       hardProblems: [
         {
           title: "Knowing which stage failed",
